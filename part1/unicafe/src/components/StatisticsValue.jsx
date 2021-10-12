@@ -9,7 +9,7 @@ const StatisticsValue = ({ good, neutral, bad }) => {
   if (total === 0)
     return (
       <div>
-        <h1>Statistics</h1>
+        <h1 className="Feedback">Statistics</h1>
         <p>No Feedback Yet</p>
       </div>
     );
