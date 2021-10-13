@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Button from "./components/Button";
 
 export const App = () => {
   const anecdotes = [
@@ -13,19 +14,24 @@ export const App = () => {
     ,
   ];
   const [selected, setSelected] = useState(0);
+  const [allVote, setAllVote] = useState(Array(anecdotes.length).fill(0));
 
   const randomGenerator = () => {
-    const number = Math.floor(Math.random() * anecdotes.length - 1);
-    console.log(number);
-    return number;
+    setSelected(Math.floor(Math.random() * anecdotes.length));
   };
-  randomGenerator();
-  const handleClick = () => setSelected(randomGenerator());
+
+  const handleVoteClick = () => {
+    const setClick = [...allVote];
+    setClick[selected] += 1;
+    setAllVote(setClick);
+  };
 
   return (
-    <div>
+    <div className="App">
       <h1> {anecdotes[selected]}</h1>
-      <button onClick={handleClick}>Next Anecdote</button>;
+      <p>has {allVote[selected]} votes</p>
+      <Button onClick={handleVoteClick} text="Vote" />
+      <Button onClick={randomGenerator} text="Next Anecdote" />
     </div>
   );
 };
