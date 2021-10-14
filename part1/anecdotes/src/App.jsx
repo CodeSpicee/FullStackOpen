@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import Button from "./components/Button";
+import Heading from "./components/Heading";
+import MostVotes from "./components/MostVotes";
 
 export const App = () => {
   const anecdotes = [
@@ -11,10 +13,10 @@ export const App = () => {
     "Premature optimization is the root of all evil.",
     "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
     "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients",
-    ,
   ];
   const [selected, setSelected] = useState(0);
   const [allVote, setAllVote] = useState(Array(anecdotes.length).fill(0));
+  console.log(anecdotes.length);
 
   const randomGenerator = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length));
@@ -28,10 +30,13 @@ export const App = () => {
 
   return (
     <div className="App">
-      <h1> {anecdotes[selected]}</h1>
+      <Heading text="Anecdotes of the Day" />
+      <p> {anecdotes[selected]}</p>
       <p>has {allVote[selected]} votes</p>
       <Button onClick={handleVoteClick} text="Vote" />
       <Button onClick={randomGenerator} text="Next Anecdote" />
+      <Heading text="Anecdotes with the most vote" />
+      <MostVotes anecdotes={anecdotes} allVote={allVote} />
     </div>
   );
 };
