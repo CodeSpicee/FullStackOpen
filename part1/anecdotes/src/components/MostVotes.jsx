@@ -5,7 +5,12 @@ const MostVotes = ({ anecdotes, allVote }) => {
   const mostVotesIndex = allVote.indexOf(highestVotes);
   const mostVotes = anecdotes[mostVotesIndex];
   if (highestVotes === 0) {
-    return <p> No Vote Yet</p>;
+    return (
+      <div>
+        <p> No Vote Yet</p>
+        <p>You need to vote first</p>
+      </div>
+    );
   }
   return (
     <div>
