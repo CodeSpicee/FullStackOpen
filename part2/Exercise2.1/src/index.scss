@@ -16,4 +16,11 @@ body {
 body {
   display: flex;
   justify-content: center;
+
+  .App {
+    h1 {
+      font-weight: bold;
+      color: aquamarine;
+    }
+  }
 }

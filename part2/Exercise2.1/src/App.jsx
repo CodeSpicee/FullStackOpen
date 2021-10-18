@@ -47,7 +47,7 @@ const App = () => {
     },
   ];
   return (
-    <div>
+    <div className="App">
       <Course course={courses} />
     </div>
   );
