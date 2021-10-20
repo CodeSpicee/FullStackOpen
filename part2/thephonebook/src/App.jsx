@@ -30,6 +30,10 @@ const App = () => {
       },
     ];
     if (newPerson.trim() && newNumber.trim() === "") return;
+    if (persons.find((person) => person.name === newPerson)) {
+      alert(`${newPerson} is already added to the phonebook`);
+      return "";
+    }
     setPerson([...persons, ...personObject]);
     setNewPerson("");
     setNewNumber("");

@@ -9,7 +9,7 @@ body {
 body {
   .App {
     margin-left: 10rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     h1 {
       color: red;
     }
@@ -18,14 +18,14 @@ body {
         width: 100%;
 
         input {
-          padding: 0rem 5rem;
+          padding: 1rem 5rem;
           margin-bottom: 2rem;
         }
       }
     }
     .Person {
       span {
-        margin-left: 3rem;
+        margin-left: 1rem;
       }
     }
   }
