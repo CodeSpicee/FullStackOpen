@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Filter from "./components/Filter";
 import Form from "./components/Form";
 import Heading from "./components/Heading";
 import Person from "./components/Person";
@@ -14,14 +15,22 @@ const App = () => {
   // console.log(persons);
   const [newPerson, setNewPerson] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const handleNewPerson = (e) => {
     setNewPerson(e.target.value);
+  };
+
+  const handleFilter = (e) => {
+    setSearchQuery(e.target.value);
   };
   const handleNewNumber = (e) => {
     setNewNumber(e.target.value);
   };
   const addPerson = (e) => {
     e.preventDefault();
+    if (!newPerson && !newNumber) {
+      return alert("You need to enter your name and number");
+    }
     const personObject = [
       {
         name: newPerson,
@@ -30,18 +39,32 @@ const App = () => {
       },
     ];
     if (newPerson.trim() && newNumber.trim() === "") return;
-    if (persons.find((person) => person.name === newPerson)) {
+    if (
+      persons.find(
+        (person) => person.name.toLowerCase() === newPerson.toLowerCase()
+      )
+    ) {
       alert(`${newPerson} is already added to the phonebook`);
-      return "";
+      setNewPerson("");
+      setNewNumber("");
+      return;
     }
     setPerson([...persons, ...personObject]);
     setNewPerson("");
     setNewNumber("");
   };
+  const filterPerson = searchQuery.trim()
+    ? persons.filter(
+        (person) =>
+          person.name.toLowerCase().includes(searchQuery) ||
+          String(person.number).includes(searchQuery)
+      )
+    : persons;
+
   return (
     <div className="App">
       <Heading title="Phonebook" />
-
+      <Filter value={searchQuery} onChange={handleFilter} />
       <Heading title="Add a New Contact" />
       <Form
         onSubmit={addPerson}
@@ -51,11 +74,9 @@ const App = () => {
         onChange={handleNewPerson}
         text="Add"
       />
-
       <div>
         <Heading title="Number" />
-        {persons.map((person) => {
-          console.log(person);
+        {filterPerson.map((person) => {
           return <Person key={person.id} person={person} />;
         })}
       </div>
