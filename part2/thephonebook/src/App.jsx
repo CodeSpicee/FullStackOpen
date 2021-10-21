@@ -16,6 +16,7 @@ const App = () => {
   const [newPerson, setNewPerson] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
   const handleNewPerson = (e) => {
     setNewPerson(e.target.value);
   };
