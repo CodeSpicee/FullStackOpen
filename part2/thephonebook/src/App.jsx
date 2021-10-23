@@ -3,7 +3,7 @@ import { useState } from "react";
 import Filter from "./components/Filter";
 import Form from "./components/Form";
 import Heading from "./components/Heading";
-import Person from "./components/Person";
+import Persons from "./components/Persons";
 
 const App = () => {
   const [persons, setPerson] = useState([
@@ -75,12 +75,8 @@ const App = () => {
         onChange={handleNewPerson}
         text="Add"
       />
-      <div>
-        <Heading title="Number" />
-        {filterPerson.map((person) => {
-          return <Person key={person.id} person={person} />;
-        })}
-      </div>
+      <Heading title="Numbers" />
+      <Persons filterPerson={filterPerson} />
     </div>
   );
 };
